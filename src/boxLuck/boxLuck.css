@@ -1,0 +1,51 @@
+.bg {
+    background-color: #FFECC7;
+}
+.box-bg-color {
+    margin: 0 15px 0 15px;
+    background-color: white;
+    border-radius: 8px;
+}
+
+.box-luck {
+    position: relative;
+    top: -20px;
+    margin-bottom: 20px;
+}
+
+.box-button {
+    position: relative;
+    top: -74px;
+}
+
+.box-close img {
+    width: 75% !important;
+}
+
+.imgs, .box-close img {
+    width: 100%;
+    margin-bottom: 120px;
+    margin-top: 55px;
+}
+
+.button-color {
+    width: 80%;
+    margin-left: 10%;
+    font-size: 18px;
+    border-radius: 38px !important;
+    background: linear-gradient(#FFCE84, #FAB659);
+    color: #803B08 !important;
+}
+
+.box-count {
+    margin-top: -47px;
+    color: #803B08;
+    font-size: 15px;
+    padding-bottom: 20px;
+}
+
+.minw {
+    width: 200px;
+    margin: 0 auto;
+    margin-bottom: 30px;
+}

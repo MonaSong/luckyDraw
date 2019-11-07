@@ -1,0 +1,17 @@
+.w100{
+    width: 100%;
+}
+
+.bg {
+    background-color: #FFECC7;
+}
+
+.banner {
+    padding-bottom: 30px;
+}
+
+.minw {
+    width: 200px;
+    margin: 0 auto;
+    margin-top: 30px;
+}
