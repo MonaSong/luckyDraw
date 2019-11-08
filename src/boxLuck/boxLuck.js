@@ -13,7 +13,7 @@ class BoxLuck extends Component {
         super(props)
         this.state = {
             // 选择用户
-            sValue: [],
+            sValue: ['1'],
 
             // 仓库数据
             list: [],
@@ -28,7 +28,7 @@ class BoxLuck extends Component {
             prize: '',
 
             // 重置数据
-            isReset: false,
+            isReset: true,
 
             // 动画
             animate: null,
@@ -75,7 +75,6 @@ class BoxLuck extends Component {
             }, 
             async _ => await this.resetStock()
         );
-
     }
 
     // json 动画
@@ -104,23 +103,20 @@ class BoxLuck extends Component {
 
         let { result, prize } = await Api.getLuckyDraw({ userId: this.state.sValue[0] });
 
-        this.setState({ zero: 0 });
-
         if (result === 'repeat') return Toast.info('请勿重复领取！');
     
         if (result === 'success') {
-            if (prize === 'none') {
-                return Toast.info('谢谢惠顾！');
-            }
 
             // 禁止重复抽奖
             this.setState({
                 is_show_result: true,
                 modal_visible: true,
-                prize: prize,
+                prize: prize === 'none' ? '谢谢惠顾' : prize,
+                zero: 0,
             }, () => {
                 this.loadAnimation();
-            })
+            });
+
         }
     }
 
@@ -144,9 +140,9 @@ class BoxLuck extends Component {
 
         if (result === 'success') {
             this.setState({ zero: 1 });
-            return Toast.info('重置成功');
+            return Toast.info('登录成功');
         }
-        return Toast.info('重置失败');
+        return Toast.info('登录失败');
     }
 
     render() {
@@ -161,7 +157,7 @@ class BoxLuck extends Component {
                         onChange={v => this.changeStock(v) }
                         onOk={v => this.setState({ sValue: v })}
                     >
-                        <List.Item arrow="horizontal">切换账号</List.Item>
+                        <List.Item arrow="horizontal" style={{ borderRadius: '4px'}}>切换账号</List.Item>
                     </Picker>
                 </div>
 
@@ -190,7 +186,7 @@ class BoxLuck extends Component {
                         visible={this.state.modal_visible}
                         transparent
                         maskClosable={false}
-                        title={ `恭喜你获得了${this.state.prize}`}
+                        title={ `恭喜你获得了【${this.state.prize}】`}
                         footer={[{ text: '我知道了', onPress: () => { this.onCloseModal(); } }  ]}
                     >
                         { this.state.result }
